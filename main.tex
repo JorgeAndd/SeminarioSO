@@ -23,38 +23,12 @@
 	blablabla
 	
 \section{Windows 10}
-	aa
+	aa aa
 \subsection{Arquitetura}
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a rhoncus tortor, vitae viverra velit. Vestibulum hendrerit rhoncus molestie. In vehicula vel lacus id rutrum. Aliquam suscipit venenatis suscipit. Etiam vitae accumsan est. In hac habitasse platea dictumst. Phasellus consequat tortor sit amet ex pretium, eget laoreet enim viverra. Mauris scelerisque elit est, non pharetra arcu venenatis eget. Nam lacinia metus venenatis nisl euismod pellentesque. Quisque sit amet libero vel turpis tincidunt egestas et non diam. Nulla semper metus at sapien bibendum tincidunt. Suspendisse tincidunt ac mauris eget eleifend. In vel nibh et sapien blandit volutpat. 
 
 \subsection{Gerência de memória}
-	O Windows 10 estabelece 4GB como limite para memória física em versões 32-bits e 2TB em versões 64-bits, com exceção da versão Home, que possui limite de 128GB em sua versão de 64-bits.
-	
-	A memória física pode ser dividida em:
-	\begin{itemize}
-		\item \textbf{Reservada para o Hardware}: armazena drivers de hardware que devem sempre permanecer na memória física, não estando disponível para uso do gerenciador de memória.
-		
-		\item \textbf{Em uso:} É a memória em uso por todos os processos em execução, \emph{kernel} do SO e \emph{drivers}.
-		
-		\item \textbf{Modificada:} É a memória de páginas que foram modificadas em processos que ficaram em espera. Os dados anteriores são escritos em disco, mas facilmente recuperados.
-			
-		\item \textbf{Em espera:} É a memória que estava alocada em processos que terminaram normalmente. O gerenciador de memória mantém os dados em memória como uma espécie de cache para arquivos usados recentemente. A memória em espera está disponível para alocação, mas suas páginas são classificadas de 0 a 7, sendo as páginas com menores valores usadas primeiro.
-		
-		\item \textbf{Livre:} É a memória que ainda não foi alocada ou que retornou para o gerenciador de memória por um processo que foi terminado.
-	\end{itemize}
-
-	O gerenciador de memória do Windows 10 faz parte do Windows executive, uma porção em baixo nível do seu \emph{kernel}, residindo no arquivo \emph{Ntoskrnl.exe}. É responsável, entre outras funções, por:
-	\begin{itemize}	
-		\item Alocar, desalocar e gerenciar a memória virtual, que em sua maior parte está exposta por meio da API do Windows ou de interfaces para drivers de dispositivos em modo kernel;
-		\item Garantir que processos não acessem regiões a que não possuem permissão;
-	\end{itemize}
-	
-	O ambiente Windows, de modo geral, utiliza o conceito de espaço de endereçamento virtual para um processo, sendo este o conjunto de endereços da memória virtual que esse processo tem acesso. O espaço de endereçamento é privado e não pode ser acessado por outros processos que não o compartilhem.
-	
-	O espaço de endereçamento em versões 32-bits do Windows é de até 4GB, dividido em uma partição para o processo e outra para uso do sistema. Versões 64-bits do sistema suportam endereçamento em modo usuário de até 8TB.
-	
-	Assim como todos os componentes do \emph{Windows executive}, o gerenciador de memória é totalmente reentrante, ou seja, pode executado novamente antes que a execução anterior tenha sido concluída, e suporta execução simultânea em sistemas multiprocessados. Isso permite que duas ou mais \emph{threads} adquiram recursos de forma que seus dados não sejam corrompidos.
-
+  \input{memoria}
 \subsection{Gerência de processos}
 	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a rhoncus tortor, vitae viverra velit. Vestibulum hendrerit rhoncus molestie. In vehicula vel lacus id rutrum. Aliquam suscipit venenatis suscipit. Etiam vitae accumsan est. In hac habitasse platea dictumst. Phasellus consequat tortor sit amet ex pretium, eget laoreet enim viverra. Mauris scelerisque elit est, non pharetra arcu venenatis eget. Nam lacinia metus venenatis nisl euismod pellentesque. Quisque sit amet libero vel turpis tincidunt egestas et non diam. Nulla semper metus at sapien bibendum tincidunt. Suspendisse tincidunt ac mauris eget eleifend. In vel nibh et sapien blandit volutpat. 
 
