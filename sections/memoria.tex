@@ -13,7 +13,7 @@ O Windows 10 estabelece 4GB como limite para memória física em versões 32-bit
 		\item \textbf{Livre:} É a memória que ainda não foi alocada ou que retornou para o gerenciador de memória por um processo que foi terminado.
 	\end{itemize}
 
-	O gerenciador de memória do Windows 10 faz parte do Windows executive, uma porção em baixo nível do seu \emph{kernel}, residindo no arquivo \emph{Ntoskrnl.exe}. É responsável, entre outras funções, por~\cite{internals_pt1}:
+	O gerenciador de memória do Windows 10 faz parte do Windows executive, uma porção em baixo nível do seu \emph{kernel}, residindo no arquivo \emph{Ntoskrnl.exe}. É responsável, entre outras funções, por~\cite{internals_pt2}:
 	\begin{itemize}	
 		\item Alocar, desalocar e gerenciar a memória virtual, que em sua maior parte está exposta por meio da API do Windows ou de interfaces para drivers de dispositivos em modo kernel;
 		\item Garantir que processos não acessem regiões a que não possuem permissão;
@@ -23,4 +23,4 @@ O Windows 10 estabelece 4GB como limite para memória física em versões 32-bit
 	
 	O espaço de endereçamento em versões 32-bits do Windows é de até 4GB, dividido em uma partição para o processo e outra para uso do sistema. Versões 64-bits do sistema suportam endereçamento em modo usuário de até 8TB~\cite{w10_memory}.
 	
-	Assim como todos os componentes do \emph{Windows executive}, o gerenciador de memória é totalmente reentrante, ou seja, pode executado novamente antes que a execução anterior tenha sido concluída, e suporta execução simultânea em sistemas multiprocessados. Isso permite que duas ou mais \emph{threads} adquiram recursos de forma que seus dados não sejam corrompidos~\cite{internals_pt1}.
+	Assim como todos os componentes do \emph{Windows executive}, o gerenciador de memória é totalmente reentrante, ou seja, pode executado novamente antes que a execução anterior tenha sido concluída, e suporta execução simultânea em sistemas multiprocessados. Isso permite que duas ou mais \emph{threads} adquiram recursos de forma que seus dados não sejam corrompidos~\cite{internals_pt2}.

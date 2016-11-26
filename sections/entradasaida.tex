@@ -1,0 +1,6 @@
+O gerenciador de Entrada/Saída do \emph{kernel} do Windows 10 realiza a comunicação entre o sistema operacional e os \emph{drivers} de dispositivos por meio de \emph{IRPs}(\emph{I/O request packets}, ou pacotes de requisição de E/S). Isso permite que \emph{threads} individuais operem em múltiplas chamadas de E/S de forma concorrente~\cite{internals_pt2}.
+
+Devido aos dispositivos operarem em velocidades diferentes daquela do sistema operacional, a comunicação IRP se assemelha a pacotes de redes, sendo passados do sistema operacional para um \emph{driver} de dispositivo, e de um \emph{driver} para outro, por meio do gerenciador de E/S. O sistema de E/S do Windows possui um modelo em camadas, ou pilha, onde cada controlador na pilha envia e recebe IRPs~\cite{w10_io_manager}.
+
+Além da criação e distribuição de IRPs, o gerenciador também possui código comum a diferentes controladores, facilitando a criação e utilização de \emph{drivers} individuais de dispositivos.
+

@@ -1,11 +1,11 @@
-Assim como ocorre desde a versão 3.1, o \emph{Windows} 10 utiliza o \emph{NTFS}(\emph{New Technology File System}) como seu sistema de arquivos padrão em ambientes domésticos, suportando volumes e arquivos de até 256TB quando utilizado o tamanho do \emph{cluster} padrão de 64KB e até 2\textsuperscript{32}-1 arquivos por volume e pasta.
+Assim como ocorre desde a versão 3.1, o \emph{Windows} 10 utiliza o \emph{NTFS}(\emph{New Technology File System}) como seu sistema de arquivos padrão em ambientes domésticos, suportando volumes e arquivos de até 256TB quando utilizado o tamanho do \emph{cluster} padrão de 64KB e até 2\textsuperscript{32}-1 arquivos por volume e pasta~\cite{cluster_size}.
 
-O NTFS foi desenvolvido de forma a incluir funcionalidades necessárias em sistemas de arquivos empresarias. Isso inclui integridade e recuperação de dados, proteção à informações sensíveis, redundância de dados e tolerância a falhas.
+O NTFS foi desenvolvido de forma a incluir funcionalidades necessárias em sistemas de arquivos empresarias. Isso inclui integridade e recuperação de dados, proteção à informações sensíveis, redundância de dados e tolerância a falhas~\cite{internals_pt2}.
 \begin{itemize}
 	\item \textbf{Integridade e recuperação de dados}: Modificações no sistema de arquivos são realizadas em operações atômicas, ou seja, toda a operação deve ser completada ou nenhuma parte dela o será.
 	\item \textbf{Segurança}: Arquivos e diretórios são associados à um arquivo oculto de segurança contendo as informações de permissão. Assim que um processo tenta utilizar um arquivo, suas permissões são checadas, e seu acesso só é permitido se autorizado pelo administrador do sistema ou pelo dono do arquivo.
 	\item \textbf{Redundância e tolerância a falhas}: O NTFS garante que o sistema de arquivos permaneça acessível após uma falha do disco, mas não garante integridade dos arquivos em si. Essa integridade, entretanto, é alcançada utilizando-se RAID 1 e 5.
 \end{itemize}
 
-O sistema NTFS não tenta evitar fragmentação de arquivos durante suas alocações. Entretanto, além de sua própria ferramenta, o Windows inclui uma API que permite o desenvolvimento de ferramentas de desfragmentação de terceiros, que permite que dados de arquivos sejam movidos de forma que ocupem \emph{clusters} contíguos, possuindo como única limitação o impedimento da desfragmentação em arquivos de paginação e de logs do sistema NTFS.
+O sistema NTFS não tenta evitar fragmentação de arquivos durante suas alocações. Entretanto, além de sua própria ferramenta, o Windows inclui uma API que permite o desenvolvimento de ferramentas de desfragmentação de terceiros, que permite que dados de arquivos sejam movidos de forma que ocupem \emph{clusters} contíguos, possuindo como única limitação o impedimento da desfragmentação em arquivos de paginação e de logs do sistema NTFS~\cite{internals_pt2}.
 
