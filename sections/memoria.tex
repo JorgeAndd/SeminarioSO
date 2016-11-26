@@ -1,6 +1,6 @@
-O Windows 10 estabelece 4GB como limite para memória física em versões 32-bits e 2TB em versões 64-bits, com exceção da versão Home, que possui limite de 128GB em sua versão de 64-bits.
+O Windows 10 estabelece 4GB como limite para memória física em versões 32-bits e 2TB em versões 64-bits, com exceção da versão Home, que possui limite de 128GB em sua versão de 64-bits~\cite{w10_memory}.
 	
-	A memória física pode ser dividida em:
+	A memória física pode ser dividida em~\cite{w10_memory}:
 	\begin{itemize}
 		\item \textbf{Reservada para o Hardware}: armazena drivers de hardware que devem sempre permanecer na memória física, não estando disponível para uso do gerenciador de memória.
 		
@@ -13,14 +13,14 @@ O Windows 10 estabelece 4GB como limite para memória física em versões 32-bit
 		\item \textbf{Livre:} É a memória que ainda não foi alocada ou que retornou para o gerenciador de memória por um processo que foi terminado.
 	\end{itemize}
 
-	O gerenciador de memória do Windows 10 faz parte do Windows executive, uma porção em baixo nível do seu \emph{kernel}, residindo no arquivo \emph{Ntoskrnl.exe}. É responsável, entre outras funções, por:
+	O gerenciador de memória do Windows 10 faz parte do Windows executive, uma porção em baixo nível do seu \emph{kernel}, residindo no arquivo \emph{Ntoskrnl.exe}. É responsável, entre outras funções, por~\cite{internals_pt1}:
 	\begin{itemize}	
 		\item Alocar, desalocar e gerenciar a memória virtual, que em sua maior parte está exposta por meio da API do Windows ou de interfaces para drivers de dispositivos em modo kernel;
 		\item Garantir que processos não acessem regiões a que não possuem permissão;
 	\end{itemize}
 	
-	O ambiente Windows, de modo geral, utiliza o conceito de espaço de endereçamento virtual para um processo, sendo este o conjunto de endereços da memória virtual que esse processo tem acesso. O espaço de endereçamento é privado e não pode ser acessado por outros processos que não o compartilhem.
+	O ambiente Windows, de modo geral, utiliza o conceito de espaço de endereçamento virtual para um processo, sendo este o conjunto de endereços da memória virtual que esse processo tem acesso. O espaço de endereçamento é privado e não pode ser acessado por outros processos que não o compartilhem~\cite{internals_pt1}.
 	
-	O espaço de endereçamento em versões 32-bits do Windows é de até 4GB, dividido em uma partição para o processo e outra para uso do sistema. Versões 64-bits do sistema suportam endereçamento em modo usuário de até 8TB.
+	O espaço de endereçamento em versões 32-bits do Windows é de até 4GB, dividido em uma partição para o processo e outra para uso do sistema. Versões 64-bits do sistema suportam endereçamento em modo usuário de até 8TB~\cite{w10_memory}.
 	
-	Assim como todos os componentes do \emph{Windows executive}, o gerenciador de memória é totalmente reentrante, ou seja, pode executado novamente antes que a execução anterior tenha sido concluída, e suporta execução simultânea em sistemas multiprocessados. Isso permite que duas ou mais \emph{threads} adquiram recursos de forma que seus dados não sejam corrompidos.
+	Assim como todos os componentes do \emph{Windows executive}, o gerenciador de memória é totalmente reentrante, ou seja, pode executado novamente antes que a execução anterior tenha sido concluída, e suporta execução simultânea em sistemas multiprocessados. Isso permite que duas ou mais \emph{threads} adquiram recursos de forma que seus dados não sejam corrompidos~\cite{internals_pt1}.
