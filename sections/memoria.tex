@@ -19,8 +19,12 @@ O Windows 10 estabelece 4GB como limite para memória física em versões 32-bit
 		\item Garantir que processos não acessem regiões a que não possuem permissão;
 	\end{itemize}
 	
-	O ambiente Windows, de modo geral, utiliza o conceito de espaço de endereçamento virtual para um processo, sendo este o conjunto de endereços da memória virtual que esse processo tem acesso. O espaço de endereçamento é privado e não pode ser acessado por outros processos que não o compartilhem~\cite{internals_pt1}.
+	O ambiente Windows, de modo geral, utiliza o conceito de espaço de endereçamento virtual para um processo, sendo este o conjunto de endereços da memória virtual que esse processo tem acesso. O espaço de endereçamento é privado e não pode ser acessado por outros processos que não o compartilhem~\cite{internals_pt2}.
 	
 	O espaço de endereçamento em versões 32-bits do Windows é de até 4GB, dividido em uma partição para o processo e outra para uso do sistema. Versões 64-bits do sistema suportam endereçamento em modo usuário de até 8TB~\cite{w10_memory}.
 	
 	Assim como todos os componentes do \emph{Windows executive}, o gerenciador de memória é totalmente reentrante, ou seja, pode executado novamente antes que a execução anterior tenha sido concluída, e suporta execução simultânea em sistemas multiprocessados. Isso permite que duas ou mais \emph{threads} adquiram recursos de forma que seus dados não sejam corrompidos~\cite{internals_pt2}.
+
+	Uma funcionalidade importante introduzida no Windows 10 é a compressão de memória. Normalmente, quando uma página está inativa por um longo tempo o gerenciador de memória a move para a área de memória modificada. Se essa página continuar a não ser referenciada mas o sistema necessitar de memória adicional para outros processos a página é então escrita em disco em um arquivo denominado \emph{pagefile}~\cite{w10_memory}.
+	
+	O Windows 10 introduz o conceito de que, antes da página ser enviada ao disco, o gerenciador de memória irá comprimir páginas não utilizadas. A compressão de memória chega a ocupar apenas 40\% do tamanho original, reduzindo a necessidade de acesso ao disco a 50\% do que era necessário em versões anteriores do Windows~\cite{memory_compression}.
