@@ -1,30 +1,32 @@
-No Windows, processos são detentores de recursos que armazenam informações sobre o espaço de endereçamento virtual, os manipuladores que referenciam os objetos no modo kernel e as threads. As threads, por sua vez, são abstrações do kernel para realizar o escalonamento da CPU. Cada uma possui uma prioridade baseada no processo ao qual elas fazem parte e também podem ter afinidades com certos processadores. Cada thread possui duas pilhas, uma para que ela seja executada em modo kernel e outra para execução em modo usuário  ~\cite{tanenbaum}.
+No Windows, processos são detentores de recursos que armazenam informações sobre o espaço de endereçamento virtual, os manipuladores que referenciam os objetos no modo \emph{kernel} e as \emph{threads}. As \emph{threads}, por sua vez, são abstrações do \emph{kernel} para realizar o escalonamento da CPU. Cada uma possui uma prioridade baseada no processo ao qual elas fazem parte e também podem ter afinidades com certos processadores. Cada \emph{thread} possui duas pilhas, uma para que ela seja executada em modo \emph{kernel} e outra para execução em modo usuário~\cite{tanenbaum}.
 
-\textbf{Comunicação entre Processos}: Se dá pela comunicação entre threads, que pode ser feita por meio de pipes, pipes nomeados, mailslots, sockets, chamadas de procedimento remotas e arquivos compartilhados ~\cite{tanenbaum}.
+As \emph{threads} no Windows 10 são híbridas e possuem duas pilhas, uma para que ela seja executada em modo \emph{kernel} e outra para execução em modo usuário.
 
-Um pipe é um tipo de pseudo-arquivo que pode ser usado para conectar dois processos. Mailslots e sockets são similares aos pipes. No entanto, diferente dos pipes, a comunicação não é bidirecional em mailslots e os sockets costumam conectar processos em máquinas diferentes. 
+\textbf{Comunicação entre Processos}: Se dá pela comunicação entre threads, que pode ser feita por meio de \emph{pipes}, \emph{pipes} nomeados, \emph{mailslots}, \emph{sockets}, chamadas de procedimento remotas e arquivos compartilhados~\cite{tanenbaum}.
 
-\textbf{Sincronização}: O Windows fornece vários mecanismos de sincronização, incluindo semáforos, mutexes, eventos e regiões críticas  ~\cite{tanenbaum}.
+Um \emph{pipe} é um tipo de pseudo-arquivo que pode ser usado para conectar dois processos. \emph{Mailslots} e \emph{sockets} são similares aos \emph{pipes}. No entanto, diferente dos \emph{pipes}, a comunicação não é bidirecional em \emph{mailslots} e os \emph{sockets} costumam conectar processos em máquinas diferentes. 
+
+\textbf{Sincronização}: O Windows fornece vários mecanismos de sincronização, incluindo semáforos, \emph{mutexes}, eventos e regiões críticas~\cite{tanenbaum}.
 
 \textbf{Escalonamento}: O sistema de escalonamento do Windows é completamente preemptivo e guiado por prioridades.
-O kernel do Windows não possui uma thread de escalonamento central. Por isso, quando uma thread não pode mais executar, ela entra em modo kernel e executa o escalonador. Para que uma thread execute o escalonador, uma das seguintes situações deve ocorrer ~\cite{tanenbaum}:
+O \emph{kernel} do Windows não possui uma \emph{thread} de escalonamento central. Por isso, quando uma \emph{thread} não pode mais executar, ela entra em modo \emph{kernel} e executa o escalonador. Para que uma \emph{thread} execute o escalonador, uma das seguintes situações deve ocorrer~\cite{tanenbaum}:
 \begin{itemize}
-	\item A thread atual bloqueia em um semáforo, mutex ou evento de E/S;
-	\item A thread sinaliza um objeto;
+	\item A \emph{thread} atual bloqueia em um semáforo, \emph{mutex} ou evento de E/S;
+	\item A \emph{thread} sinaliza um objeto;
 	\item O seu quantum acaba.
 \end{itemize}
 
 O escalonador também pode ser chamado quando uma operação de E/S ou uma espera temporizada termina.
 
-Para implementar o escalonamento, o sistema mantém uma lista com 32 entradas, tal que cada uma contém um conjunto de threads com prioridade correspondente ao número da entrada. O algoritmo de escalonamento busca o vetor desde a prioridade 31 até 0 por uma entrada não vazia. Quando encontra, seleciona a primeira thread e esta é executada durante um quantum. 
+Para implementar o escalonamento, o sistema mantém uma lista com 32 entradas, tal que cada uma contém um conjunto de \emph{threads} com prioridade correspondente ao número da entrada. O algoritmo de escalonamento busca o vetor desde a prioridade 31 até 0 por uma entrada não vazia. Quando encontra, seleciona a primeira \emph{thread} e esta é executada durante um quantum. 
 
-A API do Windows organiza os processos de acordo com a classe de prioridade que eles recebem quando são criados. Essas classes são: tempo real, alta, acima do normal, normal, abaixo do normal ou ocioso. Feito isso, ela atribui uma prioridade relativa às threads individuais dentro de cada processo. Essas prioridades são: tempo crítico, mais alta, acima do normal, mais baixa e ociosa. No kernel, a classe de prioridade é convertida para uma prioridade-base e nela aplica-se um diferencial de acordo com a prioridade relativa da thread. Desta forma, processos possuem apenas uma prioridade-base, enquanto as threads possuem duas prioridades: atual e base. 
+A API do Windows organiza os processos de acordo com a classe de prioridade que eles recebem quando são criados. Essas classes são: tempo real, alta, acima do normal, normal, abaixo do normal ou ocioso. Feito isso, ela atribui uma prioridade relativa às \emph{threads} individuais dentro de cada processo. Essas prioridades são: tempo crítico, mais alta, acima do normal, mais baixa e ociosa. No \emph{kernel}, a classe de prioridade é convertida para uma prioridade-base e nela aplica-se um diferencial de acordo com a prioridade relativa da \emph{thread}. Desta forma, processos possuem apenas uma prioridade-base, enquanto as \emph{threads} possuem duas prioridades: atual e base. 
 
-As threads de tempo real nunca têm suas prioridades alteradas. As demais threads, no entanto, podem ter suas prioridades atuais alteradas. As seguintes situações podem acarretar na alteração da prioridade atual de uma thread:
+As threads de tempo real nunca têm suas prioridades alteradas. As demais \emph{threads}, no entanto, podem ter suas prioridades atuais alteradas. As seguintes situações podem acarretar na alteração da prioridade atual de uma \emph{thread}:
 \begin{itemize}
 	\item Uma operação de E/S é finalizada;
-	\item Uma thread que esteja esperando um semáforo, mutex ou outro evento seja liberada;
-	\item Uma thread de GUI desperta.
+	\item Uma \emph{thread} que esteja esperando um semáforo, \emph{mutex} ou outro evento seja liberada;
+	\item Uma \emph{thread} de \emph{GUI} desperta.
 \end{itemize}
 
-Se a thread gastar todo o seu quantum durante a execução, sua prioridade é rebaixada. Isso ocorre quantas vezes ela for executada, até que a sua prioridade iguale-se à prioridade do nível-base.
+Se a \emph{thread} gastar todo o seu quantum durante a execução, sua prioridade é rebaixada. Isso ocorre quantas vezes ela for executada, até que a sua prioridade iguale-se à do nível-base.
