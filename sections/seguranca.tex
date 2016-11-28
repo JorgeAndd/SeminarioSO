@@ -1,0 +1,14 @@
+A primeira camada de proteção do Windows 10 é o próprio hardware. Alguns dos recursos de segurança do Windows 10 tiram proveito de projetos modernos de hardware. Destacam-se ~\cite{introducing_windows}:
+
+\begin{itemize}
+\item \textbf{Unified Extensible Firmware Interface (UEFI)}: Interface de firmware que realiza funções anteriormente realizadas pela BIOS. É um aspecto chave da segurança do Windows 10, oferecendo Boot Seguro e suporte a dispositivos auto-encriptados. Quando o Boot Seguro está ativado, o usuário só é capaz de iniciar o computador usando um loader que use um certificado armazenado no UEFI.   
+\item \textbf{Trusted Platform Module (TPM)}: Chip que dá suporte a encriptação de alto nível e previne adulteração de certificados e chaves de encriptação. A presença do TPM permite recursos como a encriptação de drive BitLocker, Measured Boot e Device Guard.
+\end{itemize}
+
+Além disso, o Windows 10 oferece suporte a dispositivos de hardware que permitem que usuários se identifiquem por meio de informações biométricas, como digitais e reconhecimento facial.
+
+A encriptação é habilitada por padrão em todas as edições do Windows para dispositivos que incluem um TPM. As edições Pro e Enterprise podem ser configuradas com proteção BitLocker (que é um sistema de criptografia que codifica partições) adicional e capacidade de gerência. A encriptação é habilitada assim que um administrador local faz login com uma conta da Microsoft. A chave de recuperação é automaticamente armazenada no OneDrive do usuário para que ele seja capaz de recuperar os dados encriptados posteriormente ~\cite{introducing_windows}.
+
+Além disso, o Windows 10 implementa também o Windows Passport, que substitui senhas por uma autenticação dupla. Para isso, o usuário deve registrar um dispositivo por meio de uma conta de um dos serviços da Microsoft ou algum outro serviço que dê suporte para a autenticação FIDO (Fast IDentity Online). Após o registro, o próprio dispositivo se torna um dos fatores para realizar a autenticação. O segundo fator é o PIN. Desta forma, mesmo que um usuário com intenções maliciosas tenha caches de nomes de usuários e senhas, ele não será capaz de se autenticar sem o dispositivo físico e a habilidade de transmitir a credencial do usuário e o seu PIN ou informação biométrica. Para utilizar esse recurso, o dispositivo precisa ter um TPM, que armazena o certificado do dispositivo quando ele é registrado.
+
+Além disso, a segurança do Windows se dá também por listas de controle de acesso e níveis de integridade. Cada processo tem um token de autenticação que especifica a identidade do usuário e quais são os seus privilégios e cada objeto tem um descritor de segurança associado que aponta para a lista de controle de acesso que dá ou nega acesso a grupos ou determinados indivíduos ~\cite{tanenbaum}. 
