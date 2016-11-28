@@ -1,8 +1,8 @@
-O Windows 10 estabelece 4GB como limite para memória física em versões 32-bits e 2TB em versões 64-bits, com exceção da versão Home, que possui limite de 128GB em sua versão de 64-bits~\cite{w10_memory}.
+O Windows 10 estabelece 4GB como limite para memória física em versões 32-bits e 2TB em versões 64-bits, com exceção da versão \emph{Home}, que possui limite de 128GB em sua versão de 64-bits~\cite{w10_memory}.
 	
 	A memória física pode ser dividida em~\cite{w10_memory}:
 	\begin{itemize}
-		\item \textbf{Reservada para o Hardware}: armazena drivers de hardware que devem sempre permanecer na memória física, não estando disponível para uso do gerenciador de memória.
+		\item \textbf{Reservada para o Hardware}: armazena \emph{drivers} de hardware que devem sempre permanecer na memória física, não estando disponível para uso do gerenciador de memória.
 		
 		\item \textbf{Em uso:} É a memória em uso por todos os processos em execução, \emph{kernel} do SO e \emph{drivers}.
 		
@@ -13,9 +13,9 @@ O Windows 10 estabelece 4GB como limite para memória física em versões 32-bit
 		\item \textbf{Livre:} É a memória que ainda não foi alocada ou que retornou para o gerenciador de memória por um processo que foi terminado.
 	\end{itemize}
 
-	O gerenciador de memória do Windows 10 faz parte do Windows executive, uma porção em baixo nível do seu \emph{kernel}, residindo no arquivo \emph{Ntoskrnl.exe}. É responsável, entre outras funções, por~\cite{internals_pt2}:
+	O gerenciador de memória do Windows 10 faz parte do \emph{Windows executive}, uma porção em baixo nível do seu \emph{kernel}, residindo no arquivo \emph{Ntoskrnl.exe}. É responsável, entre outras funções, por~\cite{internals_pt2}:
 	\begin{itemize}	
-		\item Alocar, desalocar e gerenciar a memória virtual, que em sua maior parte está exposta por meio da API do Windows ou de interfaces para drivers de dispositivos em modo kernel;
+		\item Alocar, desalocar e gerenciar a memória virtual, que em sua maior parte está exposta por meio da API do Windows ou de interfaces para \emph{drivers} de dispositivos em modo \emph{kernel};
 		\item Garantir que processos não acessem regiões a que não possuem permissão;
 	\end{itemize}
 	
